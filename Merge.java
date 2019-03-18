@@ -1,3 +1,4 @@
+import java.util.Arrays;
 public class Merge{
   public static int[] merge(int []dataA,int[] dataB,int low,int high){// must be sorted
            int[]result=new int[dataA.length+dataB.length];
@@ -6,7 +7,6 @@ public class Merge{
            int resultIndex=0;
            int iB=0;
            int iA=0;
-          // int minLimit=Math.min(dataA.length,dataB.length);
            while(iB<dataB.length && iA<dataA.length){
              if(dataA[iA]<dataB[iB]){
                result[resultIndex]=dataA[iA];
@@ -40,6 +40,7 @@ public class Merge{
            return result;
   }
   public static void Mergesort(int[]data,int[]storageA,int[]storageB){// cuts down the length of array to 1
+	     System.out.println(Arrays.toString(data));
         int length=data.length;
         while (length>1){
            for(int i=0;i<data.length/2;i++){
@@ -47,7 +48,7 @@ public class Merge{
            }
            int index=0;
            for(int i=data.length/2;i<data.length;i++){
-             storageA[index]=data[i];
+             storageB[index]=data[i];
              index++;
            }
            int[]temp1=new int[storageA.length/2];
@@ -63,6 +64,7 @@ public class Merge{
            else{
              low=storageB[0];
            }
+
            if(storageB[storageB.length-1]>=storageB[storageB.length-1]){
              high=storageB[storageB.length-1];
            }
@@ -70,6 +72,24 @@ public class Merge{
              high=storageA[storageB.length-1];
            }
            data=merge(storageA,storageB,low,high);
+           System.out.println(Arrays.toString(data));
+           length=1;
         }
+       // System.out.println(Arrays.toString(storageA));
+        //System.out.println(Arrays.toString(storageB));
+        //data=merge(storageA,storageB,0,1);
+  }
+  public static void mergesort(int[]ary) {
+	  int[]storageA=new int[ary.length/2];
+	  int[]storageB=new int[ary.length-storageA.length];
+	  Mergesort(ary,storageA,storageB);
+	  System.out.println(Arrays.toString(storageA));
+	  System.out.println(Arrays.toString(storageB));
+	  merge(storageA,storageB,0,1);
+  }
+  public static void main(String[]args) {
+	  int[]ary= {3,6,12,2,3};
+	  mergesort(ary);
+	  System.out.println(Arrays.toString(ary));
   }
 }
