@@ -1,13 +1,14 @@
 import java.util.Arrays;
 public class Merge{
-  public static int[] merge(int []dataA,int[] dataB,int low,int high){// must be sorted
+  public static void merge(int[]data,int []dataA,int[] dataB){// must be sorted
            int[]result=new int[dataA.length+dataB.length];
-           result[0]=low;
-           result[result.length-1]=high;
+          // result[0]=low;
+           //result[result.length-1]=high;
            int resultIndex=0;
            int iB=0;
            int iA=0;
            while(iB<dataB.length && iA<dataA.length){
+             System.out.println(Arrays.toString(result));
              if(dataA[iA]<dataB[iB]){
                result[resultIndex]=dataA[iA];
                resultIndex++;
@@ -15,6 +16,7 @@ public class Merge{
              }
              else if(dataA[iA]==dataB[iB]){
                result[resultIndex]=dataA[iA];
+               result[resultIndex+1]=dataA[iA];
                resultIndex+=2;
                iA++;
                iB++;
@@ -25,22 +27,29 @@ public class Merge{
                iB++;
              }
            }
+           System.out.println(Arrays.toString(result));
            if(iB<dataB.length){
              for(int i=iB;i<dataB.length;i++){
                result[resultIndex]=dataB[i];
                resultIndex++;
              }
            }
+           System.out.println(Arrays.toString(result));
            if(iA<dataA.length){
              for(int i=iA;i<dataA.length;i++){
                result[resultIndex]=dataA[i];
                resultIndex++;
              }
            }
-           return result;
+           System.out.println(Arrays.toString(result));
+           for(int i=0;i<data.length;i++){
+             data[i]=result[i];
+           }
+           System.out.println(Arrays.toString(result));
+
   }
   public static void Mergesort(int[]data,int[]storageA,int[]storageB){// cuts down the length of array to 1
-	     System.out.println(Arrays.toString(data));
+	    /// System.out.println(Arrays.toString(data));
         int length=data.length;
         while (length>1){
            for(int i=0;i<data.length/2;i++){
@@ -57,22 +66,9 @@ public class Merge{
            int[]temp4=new int[storageB.length-temp3.length];
            Mergesort(storageA,temp1,temp2);
            Mergesort(storageB,temp3,temp4);
-           int low,high;
-           if (storageA[0]<=storageB[0]){
-             low=storageA[0];
-           }
-           else{
-             low=storageB[0];
-           }
 
-           if(storageB[storageB.length-1]>=storageB[storageB.length-1]){
-             high=storageB[storageB.length-1];
-           }
-           else{
-             high=storageA[storageB.length-1];
-           }
-           data=merge(storageA,storageB,low,high);
-           System.out.println(Arrays.toString(data));
+           merge(data,storageA,storageB);
+          // System.out.println(Arrays.toString(data));
            length=1;
         }
        // System.out.println(Arrays.toString(storageA));
@@ -83,13 +79,17 @@ public class Merge{
 	  int[]storageA=new int[ary.length/2];
 	  int[]storageB=new int[ary.length-storageA.length];
 	  Mergesort(ary,storageA,storageB);
-	  System.out.println(Arrays.toString(storageA));
-	  System.out.println(Arrays.toString(storageB));
-	  merge(storageA,storageB,0,1);
+	//  System.out.println(Arrays.toString(storageA));
+	//  System.out.println(Arrays.toString(storageB));
+	  //merge(storageA,storageB);
   }
   public static void main(String[]args) {
-	  int[]ary= {3,6,12,2,3};
-	  mergesort(ary);
-	  System.out.println(Arrays.toString(ary));
+	  int[]ary= {2,3,3,1,4,5,6};
+    int[]test=new int[100];
+    for(int i=0;i<100;i++){
+      test[i]=100-i;
+    }
+	  mergesort(test);
+	 System.out.println(Arrays.toString(test));
   }
 }
