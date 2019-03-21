@@ -100,13 +100,5 @@ public class Merge{
 	//  System.out.println(Arrays.toString(storageB));
 
   }
-  public static void main(String[]args) {
-	  int[]ary= {2,3,3,1,4,5,6,10,8,34,3323,322,21,-323,849,344,2,2,222,31,121,3232,9000000,1,0};
-    int[]test=new int[10];
-    for(int i=0;i<10;i++){
-      test[i]=10-i;
-    }
-	 mergesort(ary);
-	 System.out.println(Arrays.toString(ary));
-  }
+
 }
